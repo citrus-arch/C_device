@@ -1,0 +1,234 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+FILE *fp=fopen("Retail_Transaction.csv","r");
+char line[500];
+if(fp==NULL)
+{
+	printf("error in opening the file\n");
+}
+
+else
+{
+//1. count the number of customers who have purchased products with cash payment and display the count 
+	int count=0;
+	while(fgets(line,500,fp)!=NULL)
+	{
+		char *val=strtok(line,","); 
+		val=strtok(NULL,",");
+		val=strtok(NULL,",");
+		val=strtok(NULL,",");
+		val=strtok(NULL,",");
+		val=strtok(NULL,",");
+		if(strcmp(val,"Cash")==0)
+		{
+			count++;
+		}
+	}
+	fclose(fp);
+	printf("Number of customers who have purchased with cash is %d\n",count);
+}
+
+//2. program to store the details of purchased details(customerID,productID,quantity,paymentmethod) for 'clothing' into retail_clothing.csv
+void clothing_details(){
+char cust_id[20];
+    char prod_id[20];
+    int quantity;
+    char payment_method[20];
+    char category[25];
+ FILE *file = fopen("Retail_Transaction.csv", "r");
+    if (file == NULL) {
+        printf("Error opening file\n");
+    }
+    FILE *file1 = fopen("Retail_Clothing.csv", "w");
+    if (file1 == NULL) {
+        printf("Error opening file\n");
+    }
+    char line[1024];
+    while (fgets(line,1024,file)){
+        char *token = strtok(line,",");
+        int token_count=0;
+        while (token!=NULL){
+            switch (token_count){
+                case 0:
+                strcpy(cust_id,token);
+                break;
+                case 1:
+                strcpy(prod_id,token);
+                break;
+                case 2:
+                quantity=atof(token);
+                break;
+                case 5:
+                strcpy(payment_method,token);
+                break;
+                case 6:
+                strcpy(category,token);
+                break;
+            }
+            token = strtok(NULL,",");
+            token_count++;
+        }
+        if (strcmp(category,"Clothing")==0){
+            fprintf(file1,"%s,%s,%d,%s\n",cust_id,prod_id,quantity,payment_method);
+        }
+    }
+    fclose(file);
+    fclose(file1);
+}
+
+//3. program in C to display the details of Transactions(Customer ID, Product ID, Quantity, Payment Method) for the product category "Books"
+
+void books_details()
+{
+    char cust_id[20];
+    char prod_id[20];
+    int quantity;
+    char payment_method[20];
+    char category[25];
+
+    FILE *file = fopen("Retail_Transaction.csv", "r");
+    if (file == NULL) {
+        printf("Error opening file\n");
+    }
+    char line[1024];
+    while (fgets(line,1024,file)){
+        char *token = strtok(line,",");
+        int token_count=0;
+        while (token!=NULL){
+            switch (token_count){
+                case 0:
+                strcpy(cust_id,token);
+                break;
+                case 1:
+                strcpy(prod_id,token);
+                break;
+                case 2:
+                quantity=atof(token);
+                break;
+                case 5:
+                strcpy(payment_method,token);
+                break;
+                case 6:
+                strcpy(category,token);
+                break;
+            }
+            token = strtok(NULL,",");
+            token_count++;
+        }
+        if (strcmp(category,"Books")==0){
+            printf("Customer ID:%s,Product ID:%s,Quantity:%d,Payment Method:%s\n",cust_id,prod_id,quantity,payment_method);
+        }
+
+    }
+}
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+int main()
+{
+int x=1;
+int *p;
+int my_acc[2];
+int a;char name[50];
+int acc_number=100;
+int balance;  
+int init_bal = 0;
+int deposit;
+
+
+
+balance=init_bal+deposit;
+init_bal=balance;
+
+while(x==1)
+{
+printf("Bank management system\n");
+printf("1. create customer acc\n");
+printf("2. check balance\n");
+printf("3. deposit\n");
+printf("4. withdraw\n");
+printf("5. exit\n");
+
+printf("enter choice: ");
+scanf("%d",&a);
+
+switch(a)
+{
+case 1: 
+{
+printf("enter your name: ");
+scanf("%s",&name);
+my_acc[0]=acc_number;
+my_acc[1]=0;
+int *p=my_acc;
+printf("enter the initial deposit amount: ");
+scanf("%d",&deposit);
+printf("customer account created successfully!!\n");
+printf("name: %s\n",name);
+printf("account number: %d\n",*p);
+printf("Initial balance: %d\n", *(p+1)); 
+printf("Current balance: %d\n", deposit);
+acc_number=acc_number+1;
+break;
+}
+case 2:
+{
+int *p=my_acc;
+printf("account number: %d\n",*p);
+printf("balance: %d\n",deposit);
+break;
+}
+case 3:
+{
+int n;
+int *p=my_acc;
+printf("\nEnter amount to be deposited :");
+scanf("%d",&n);
+deposit=deposit+n;
+printf("Sucessfully deposited!\n");
+break;
+}
+case 4:
+{
+int d;
+int *p=my_acc;
+printf("Enter amount to be withdrawn :");
+scanf("%d",&d);
+deposit=deposit-d;
+printf("Withdrawn successfully!\n");
+printf("current balance: %d\n",deposit);
+break;
+}
+case 5:
+{
+x=0;
+break;
+}
+
+
+}
+}
+
+return 0;
+
+
+}

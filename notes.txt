@@ -1,0 +1,14 @@
+notes
+
+arrays and function
+
+array being formal paramter - indicated using empty bracktes in the parameter list
+void myfun(int a[],int size);
+
+array being actual parameter - 
+array a is declared as int a[5];
+then myfun is called as myfun(a,n);
+
+pointer being formal parameter - 
+void myfun(int *a,int size);
+

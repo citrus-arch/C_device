@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include<string.h>
+union car
+{
+char name[10];
+float price;
+};
+
+int main()
+{
+union car c;
+strcpy
